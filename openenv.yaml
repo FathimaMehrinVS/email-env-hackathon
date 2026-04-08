@@ -1,0 +1,12 @@
+name: email_env
+description: Simple email assistant environment for OpenEnv hackathon
+
+tasks:
+  - name: easy
+    description: Classify simple spam vs important emails
+  - name: medium
+    description: Slightly varied email classification
+  - name: hard
+    description: Mixed and tricky email classification
+
+entry_point: env:EmailEnv
