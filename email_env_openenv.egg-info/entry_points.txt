@@ -1,2 +1,2 @@
 [console_scripts]
-server = app:start_server
+server = server.app:main

@@ -1,5 +1,4 @@
 README.md
-app.py
 env.py
 inference.py
 models.py
@@ -11,3 +10,4 @@ email_env_openenv.egg-info/dependency_links.txt
 email_env_openenv.egg-info/entry_points.txt
 email_env_openenv.egg-info/requires.txt
 email_env_openenv.egg-info/top_level.txt
+server/app.py

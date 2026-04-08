@@ -1,4 +1,10 @@
+import os
+import sys
 from fastapi import FastAPI
+
+# Add the parent directory to sys.path to allow importing root-level modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from env import EmailEnv
 from inference import run_inference
 
@@ -27,7 +33,8 @@ def root():
 
 def start_server():
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=7860)
+    # Now that app is in the server package, we need the full import path
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860)
 
 def main():
     run_inference()

@@ -11,19 +11,19 @@ dependencies = [
 ]
 
 [project.scripts]
-server = "app:start_server"
+server = "server.app:main"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = ["app", "env", "inference", "models", "tasks"]
+py-modules = ["server.app", "env", "inference", "models", "tasks"]
 
 
 [tool.hf.metadata]
 sdk = "docker"
-app_file = "app.py"
+app_file = "server/app.py"
 title = "email-env-openenv"
 emoji = "🤖"
 colorFrom = "blue"

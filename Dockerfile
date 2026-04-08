@@ -15,6 +15,6 @@ RUN uv sync --frozen
 # Expose port for FastAPI
 EXPOSE 7860
 
-# CMD runs the API server via the entry point defined in pyproject.toml
-# "server" points to app:start_server
-CMD ["uv", "run", "server"]
+# CMD launches the API server by default
+# uvicorn runs the FastAPI app from the server package
+CMD ["uv", "run", "uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "7860"]
