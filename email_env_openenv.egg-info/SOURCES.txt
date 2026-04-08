@@ -1,0 +1,13 @@
+README.md
+app.py
+env.py
+inference.py
+models.py
+pyproject.toml
+tasks.py
+email_env_openenv.egg-info/PKG-INFO
+email_env_openenv.egg-info/SOURCES.txt
+email_env_openenv.egg-info/dependency_links.txt
+email_env_openenv.egg-info/entry_points.txt
+email_env_openenv.egg-info/requires.txt
+email_env_openenv.egg-info/top_level.txt

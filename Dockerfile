@@ -1,9 +1,20 @@
-FROM python:3.10
+FROM python:3.11-slim
 
 WORKDIR /app
 
+# Install uv
+RUN pip install --no-cache-dir uv
+
+# Copy project files
 COPY . .
 
-RUN pip install --no-cache-dir openai pydantic openenv-core
+# Install dependencies using uv
+# --frozen ensures we use the uv.lock file
+RUN uv sync --frozen
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+# Expose port for FastAPI
+EXPOSE 7860
+
+# CMD runs the API server via the entry point defined in pyproject.toml
+# "server" points to app:start_server
+CMD ["uv", "run", "server"]

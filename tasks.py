@@ -6,13 +6,28 @@ def get_sample_emails():
     ]
 
 def task_easy():
-    return get_sample_emails(), ["delete", "mark_important", "delete"]
+    emails = [
+        {"text": "Win a free iPhone! Click here.", "label": "spam"},
+        {"text": "Project meeting at 2pm.", "label": "important"},
+        {"text": "Lunch today?", "label": "ignore"}
+    ]
+    return emails, ["delete", "mark_important", "ignore"]
 
 def task_medium():
-    return get_sample_emails(), ["delete", "mark_important", "delete"]
+    emails = [
+        {"text": "Congratulations on your recent purchase. Here is your receipt.", "label": "ignore"},
+        {"text": "URGENT: Server down, please check.", "label": "important"},
+        {"text": "Claim your gift card today!", "label": "spam"}
+    ]
+    return emails, ["ignore", "mark_important", "delete"]
 
 def task_hard():
-    return get_sample_emails(), ["delete", "mark_important", "delete"]
+    emails = [
+        {"text": "RE: Following up on our previous discussion regarding the sync.", "label": "important"},
+        {"text": "Your account subscription will expire soon unless you renew.", "label": "ignore"},
+        {"text": "Limited time offer: Get 90% off on all items.", "label": "spam"}
+    ]
+    return emails, ["mark_important", "ignore", "delete"]
 
 def grade_task(predicted_actions: list, expected_actions: list) -> float:
     if not expected_actions:
@@ -21,3 +36,4 @@ def grade_task(predicted_actions: list, expected_actions: list) -> float:
     total = len(expected_actions)
     correct = sum(1 for p, e in zip(predicted_actions, expected_actions) if p == e)
     return correct / total
+

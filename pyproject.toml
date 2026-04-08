@@ -1,6 +1,25 @@
+[project]
+name = "email-env-openenv"
+version = "0.1.0"
+description = "Email Triage AI Environment for Hackathon"
+dependencies = [
+    "openai",
+    "pydantic",
+    "openenv-core>=0.2.0",
+    "fastapi",
+    "uvicorn"
+]
+
+[project.scripts]
+server = "app:start_server"
+
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["app", "env", "inference", "models", "tasks"]
+
 
 [tool.hf.metadata]
 sdk = "docker"
