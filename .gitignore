@@ -1,0 +1,14 @@
+# Python build artifacts
+.venv/
+__pycache__/
+*.egg-info/
+*.pyc
+
+# IDE and OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Project specific
+uv.lock.bak
+PIP Pythons/
