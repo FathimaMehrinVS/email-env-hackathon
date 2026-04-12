@@ -1,3 +1,13 @@
+---
+title: Email Triage AI Environment
+emoji: 📧
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # 📧 Email Triage AI Environment
 
 [![OpenEnv Compatible](https://img.shields.io/badge/OpenEnv-Compatible-blue)](https://github.com/OpenEnv-AI)
