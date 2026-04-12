@@ -3,6 +3,8 @@ from typing import Optional
 
 class EmailObservation(BaseModel):
     email: Optional[str]
+    subject: Optional[str]
+    sender: Optional[str]
 
 class EmailAction(BaseModel):
     action: str

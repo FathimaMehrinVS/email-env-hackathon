@@ -1,0 +1,10 @@
+__pycache__/
+.venv/
+.git/
+.gitignore
+uv.lock
+pyproject.toml
+.python-version
+*.pyc
+*.pyo
+.DS_Store

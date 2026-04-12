@@ -12,3 +12,6 @@ __pycache__/
 # Project specific
 uv.lock.bak
 PIP Pythons/
+.env
+secret.txt
+

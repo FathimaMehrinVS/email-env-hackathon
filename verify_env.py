@@ -1,40 +1,61 @@
 from env import EmailEnv
 
-def test_email_env():
-    env = EmailEnv()
-    
-    # Test reset
+def test_easy_task():
+    print("Testing Easy Task...")
+    env = EmailEnv(task_name="easy")
     obs = env.reset()
-    print(f"Initial Observation: {obs}")
-    assert "email" in obs
-    assert obs["email"] == "Congratulations! You've won a $1000 gift card. Click here to claim."
     
-    # Test step 1: Spam + delete -> 1.0 reward
-    obs, reward, done, info = env.step("delete")
-    print(f"Step 1: reward={reward}, done={done}, next_obs={obs}")
-    assert reward == 1.0
-    assert done == False
+    # Check fields
+    assert "email" in obs and "subject" in obs and "sender" in obs
+    assert obs["sender"] == "notifications@bank.com"
     
-    # Test step 2: Important + mark_important -> 1.0 reward
-    obs, reward, done, info = env.step("mark_important")
-    print(f"Step 2: reward={reward}, done={done}, next_obs={obs}")
-    assert reward == 1.0
-    assert done == False
-    
-    # Test step 3: Spam + ignore -> -1.0 reward
+    # Statement -> ignore
     obs, reward, done, info = env.step("ignore")
-    print(f"Step 3: reward={reward}, done={done}, next_obs={obs}")
-    assert reward == -1.0
-    assert done == True
-    assert obs["email"] == None
+    assert reward == 1.0
     
-    # Test state
-    idx, is_done = env.state()
-    print(f"State: index={idx}, done={is_done}")
-    assert idx == 3
-    assert is_done == True
+    # Urgent meeting -> mark_important
+    obs, reward, done, info = env.step("mark_important")
+    assert reward == 1.0
+    
+    print("Easy task logic verified.")
 
-    print("\nAll tests passed successfully!")
+def test_hard_task():
+    print("\nTesting Hard Task...")
+    env = EmailEnv(task_name="hard")
+    obs = env.reset()
+    assert obs["sender"] == "partner@consultancy.com"
+    
+    # Consulting follow up -> mark_important
+    _, reward, _, _ = env.step("mark_important")
+    assert reward == 1.0
+    print("Hard task logic verified.")
+
+def test_inference_readiness():
+    print("\nTesting Inference Compatibility...")
+    from inference import get_action
+    
+    # Mock observation
+    mock_obs = {
+        "email": "WIN A PRIZE NOW",
+        "subject": "SPECIAL OFFER",
+        "sender": "spam@ext.net"
+    }
+    
+    # Test the logic (Rule-based fallback should catch this as 'delete' if LLM fails)
+    action = get_action(mock_obs)
+    print(f"Inference returned action: {action}")
+    assert action in ["delete", "mark_important", "ignore"]
+    print("Inference readiness verified.")
 
 if __name__ == "__main__":
-    test_email_env()
+    try:
+        test_easy_task()
+        test_hard_task()
+        test_inference_readiness()
+        # Removed emoji for Windows compatibility
+        print("\n[SUCCESS] ALL LOCAL SYSTEM TESTS PASSED!")
+    except Exception as e:
+        print(f"\n[FAILURE] TEST FAILED: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
