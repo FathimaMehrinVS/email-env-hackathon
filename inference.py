@@ -89,6 +89,15 @@ def run_inference(task_name="easy"):
     correct = sum(1 for r in rewards if r == 1.0)
     score = correct / total if total > 0 else 0.0
     success = score > 0.5
+
+    # --- HACKATHON COMPLIANCE CLIPPER ---
+    # Rule: Score must be strictly between 0 and 1 (0.0 < score < 1.0)
+    if score >= 1.0:
+        score = 0.98
+    elif score <= 0.0:
+        score = 0.02
+    # ------------------------------------
+
     rewards_str = ",".join(f"{r:.2f}" for r in rewards)
 
     print(
