@@ -1,17 +1,20 @@
 ---
-title: Email Triage AI Environment
+title: Meta x Scaler OpenEnv Hackathon - Email Triage
 emoji: 📧
 colorFrom: blue
-colorTo: green
+colorTo: indigo
 sdk: docker
 pinned: false
 app_port: 7860
 ---
 
-# 📧 Email Triage AI Environment
+# 📧 OpenEnv Hackathon: Email Triage AI
+**Entry for the Meta x SCALER School of Technology AI Hackathon**
 
 [![OpenEnv Compatible](https://img.shields.io/badge/OpenEnv-Compatible-blue)](https://github.com/OpenEnv-AI)
-[![Python 3.11](https://img.shields.io/badge/Python-3.11-green)](https://www.python.org/)
+[![Sponsored by Meta](https://img.shields.io/badge/Sponsored%20by-Meta-blue)](https://meta.com)
+[![Scaler School](https://img.shields.io/badge/Powered%20by-Scaler-blue)](https://scaler.com)
+
 
 A robust, multi-task AI environment for evaluating email triage agents. This project simulates realistic email management scenarios with structured metadata and varying difficulty levels.
 
@@ -49,4 +52,4 @@ docker run -p 7860:7860 email-triage
 The baseline agent achieves **100% accuracy** on the `easy` set and handles high-ambiguity cases in the `hard` set using advanced context mapping.
 
 ---
-*Created for the ET AI Hackathon 2026.*
+*Developed for the Meta x SCALER OpenEnv AI Hackathon 2026. Powered by PyTorch & Hugging Face.*
